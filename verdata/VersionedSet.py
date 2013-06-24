@@ -73,3 +73,7 @@ class VersionedSet(object):
 
   def __len__(self):
     return self._get_set().__len__()
+
+  def __repr__(self):
+    s = self._get_set()
+    return 'VersionedSet(VERSION=%d, %s)' % (self.version, list(s))
