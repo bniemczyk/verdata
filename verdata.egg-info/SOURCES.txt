@@ -1,9 +1,0 @@
-setup.py
-verdata/VersionedSet.py
-verdata/__init__.py
-verdata/operations.py
-verdata.egg-info/PKG-INFO
-verdata.egg-info/SOURCES.txt
-verdata.egg-info/dependency_links.txt
-verdata.egg-info/requires.txt
-verdata.egg-info/top_level.txt
