@@ -2,6 +2,12 @@ from operations import *
 from symath import wilds,WildResults
 
 class VersionedSet(object):
+  '''
+  versioned set container
+
+  this allows you to keep 'versions' of a set easily and rollback (using get_version)
+  one thing to note is __contains__ runs in LINEAR time, unlike the python set(), same for len(vs)
+  '''
 
   def __init__(self):
     self._oplist = [] # reverse sorted list of operations
@@ -44,3 +50,26 @@ class VersionedSet(object):
     rv.version = version
     rv._oplist = new_oplist
     return rv
+
+  def _get_set(self):
+    
+    v = wilds('v')
+
+    removed = set([])
+    values = set([])
+
+    for op,i in self._oplist:
+
+      if op.match(VER_ADD(v)) and i not in removed:
+        values.add(i)
+
+      elif op.match(VER_DELETE(v)):
+        removed.add(i)
+
+    return values
+
+  def __iter__(self):
+    return self._get_set().__iter__()
+
+  def __len__(self):
+    return self._get_set().__len__()

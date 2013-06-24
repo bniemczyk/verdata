@@ -28,8 +28,13 @@ class TestProblemSet1(unittest.TestCase):
     self.assertFalse('one' in vs)
     self.assertTrue('two' in vs)
     self.assertTrue('three' in vs)
+    self.assertEqual(len(vs), 2)
 
     vs = vs.get_version(2)
     self.assertFalse('three' in vs)
     self.assertTrue('one' in vs)
     self.assertTrue('two' in vs)
+    self.assertEqual(len(vs), 2)
+
+    vs = vs.get_version(1)
+    self.assertEqual(len(vs), 1)
